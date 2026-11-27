@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Lumora · Dashboard Energi Kelas</title>
+<link rel="stylesheet" href="./css/tokens.css?v=academic-clean-v3-20261022">
+<link rel="stylesheet" href="./css/base.css?v=academic-clean-v3-20261022">
+<link rel="stylesheet" href="./css/components.css?v=academic-clean-v3-20261022">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<link rel="manifest" href="./site.webmanifest">
+</head>
+<body>
+<header>
+  <div class="header-brand">
+    <a class="brand" href="#/"><h1>Lumora · Dashboard Energi Kelas</h1></a>
+    <nav class="top-nav" aria-label="Navigasi utama"><a href="#/">Ruang</a><a href="#/penggunaan">Ringkasan penggunaan</a></nav>
+  </div>
+  <span id="err" class="badge warn" role="status" aria-live="polite" aria-atomic="true" hidden></span>
+</header>
+<main>
+
+  <!-- Layar 1: ringkasan keseluruhan -->
+  <div id="home">
+    <section>
+      <h2>Ringkasan hari ini</h2>
+      <p class="people" id="last-updated" role="status" aria-live="polite">Memuat data…</p>
+      <div class="stats">
+        <div class="card stat"><small>Ruang perlu perhatian</small><b id="s-attention">–</b></div>
+        <div class="card stat"><small>Perangkat menyala</small><b id="s-on">–</b></div>
+        <div class="card stat"><small>Daya sekarang</small><b id="s-w">–</b></div>
+        <div class="card stat"><small>Energi hari ini (kWh, estimasi)</small><b id="s-kwh">–</b></div>
+      </div>
+      <p class="people">Energi adalah estimasi dari daya terpasang dikali lama menyala sejak 00:00, bukan hasil ukur meter.</p>
+    </section>
+    <section class="card usage-section">
+      <div class="row">
+        <h2 style="margin:0">Pola penggunaan</h2>
+        <label class="calendar-room-picker">Ruang
+          <select id="home-calendar-room" aria-label="Pilih ruang pada kalender penggunaan"><option value="">Semua ruang</option></select>
+        </label>
+      </div>
+      <div class="metric-controls" role="group" aria-label="Metrik kalender penggunaan" data-calendar-controls="home">
+        <button type="button" data-metric="occupancy" aria-pressed="true">Jam terisi</button>
+        <button type="button" data-metric="energy" aria-pressed="false">Energi</button>
+        <button type="button" data-metric="scheduled" aria-pressed="false">Jam terjadwal</button>
+      </div>
+      <div id="home-usage-heatmap" class="usage-calendar"><p class="people">Memuat pola penggunaan…</p></div>
+      <p id="home-usage-note" class="people" hidden></p>
+      <div id="home-usage-detail" class="usage-detail" aria-live="polite"></div>
+    </section>
+    <section>
+      <h2>Pilih ruang</h2>
+      <div class="rooms" id="rooms"><p class="people">Memuat…</p></div>
+    </section>
+  </div>
+
+  <!-- Layar 2: detail satu ruang -->
+  <div id="room" hidden>
+    <a class="back" href="#/">← Semua ruang</a>
+    <div class="title"><h2 id="r-name">…</h2><span class="people" id="r-sub"></span></div>
+    <section class="card callout" id="r-rec"></section>
+    <div class="grid2">
+      <section class="card">
+        <h2>Tampilan ruang</h2>
+        <h3>Live CCTV kelas</h3>
+        <div class="camera-grid" id="r-preview" data-source="unset"><div class="camera-empty">Memuat feed CCTV…</div></div>
+        <p class="people" id="r-camera-note" role="status" aria-live="polite" aria-atomic="true">Memuat feed…</p>
+      </section>
+      <section class="card">
+        <h2>Okupansi</h2>
+        <div class="big" id="r-count">–</div>
+        <div class="people" id="r-last"></div>
+        <div id="r-spark"></div>
+        <h2 style="margin-top:16px">Energi hari ini (estimasi)</h2>
+        <div class="big" style="font-size:28px" id="r-kwh">–</div>
+      </section>
+    </div>
+    <section class="card">
+      <div class="row schedule-heading">
+        <div>
+          <h2 style="margin:0">Jadwal minggu ini</h2>
+          <p id="r-schedule-now" class="people">Memuat jadwal…</p>
+          <p id="r-schedule-next" class="people"></p>
+        </div>
+        <div class="schedule-week-controls">
+          <button type="button" id="r-schedule-prev" aria-label="Minggu sebelumnya">←</button>
+          <span id="r-schedule-week-label" class="people"></span>
+          <button type="button" id="r-schedule-next-week" aria-label="Minggu berikutnya">→</button>
+        </div>
+      </div>
+      <div id="r-week-schedule" class="week-schedule"></div>
+    </section>
+    <section class="card usage-section">
+      <div class="row"><h2 style="margin:0">Pola penggunaan ruang</h2></div>
+      <div class="metric-controls" role="group" aria-label="Metrik kalender penggunaan ruang" data-calendar-controls="room">
+        <button type="button" data-metric="occupancy" aria-pressed="true">Jam terisi</button>
+        <button type="button" data-metric="energy" aria-pressed="false">Energi</button>
+        <button type="button" data-metric="scheduled" aria-pressed="false">Jam terjadwal</button>
+      </div>
+      <div id="room-usage-heatmap" class="usage-calendar"><p class="people">Memuat pola penggunaan…</p></div>
+      <p id="room-usage-note" class="people" hidden></p>
+      <div id="room-usage-detail" class="usage-detail" aria-live="polite"></div>
+    </section>
+    <section class="card">
+      <h2>Perangkat</h2>
+      <div id="r-devs"></div>
+      <p class="people" id="r-control-hint">Kontrol perangkat terkunci. <a href="#/admin">Masuk melalui Admin</a> untuk mengirim perintah.</p>
+      <div class="msg" id="r-msg" role="status" aria-live="polite" aria-atomic="true"></div>
+    </section>
+    <section class="card scroll">
+      <h2>Riwayat perintah ruang ini</h2>
+      <table>
+        <thead><tr><th>Waktu</th><th>Perangkat</th><th>Aksi</th><th>Sumber</th><th>Status</th><th>Alasan</th></tr></thead>
+        <tbody id="r-cmds"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- Layar 3: admin kelas, perangkat, dan kamera -->
+  <div id="admin" hidden>
+    <a class="back" href="#/">← Semua ruang</a>
+    <div class="title"><h2>Admin</h2></div>
+    <div id="admin-management"></div>
+
+
+  </div>
+
+  <!-- Layar ringkasan historis semua ruang -->
+  <div id="not-found" hidden></div>
+
+  <div id="usage-overview" hidden>
+    <a class="back" href="#/">← Semua ruang</a>
+    <section class="overview-heading">
+      <div><h2>Ringkasan penggunaan</h2><p class="people">Perbandingan pemakaian energi dan waktu ruang terisi di seluruh ruang.</p></div>
+      <div class="metric-controls" role="group" aria-label="Periode ringkasan penggunaan">
+        <button type="button" data-overview-period="7d" aria-pressed="true">7 hari</button>
+        <button type="button" data-overview-period="30d" aria-pressed="false">30 hari</button>
+        <button type="button" data-overview-period="6m" aria-pressed="false">6 bulan</button>
+      </div>
+    </section>
+    <section>
+      <p id="overview-status" class="people" role="status" aria-live="polite">Memuat ringkasan…</p>
+      <div class="stats overview-stats" id="overview-stats"></div>
+      <p class="people">Energi adalah estimasi daya terpasang dikali lama menyala, bukan hasil ukur meter. Energi saat ruang kosong dihitung ketika ruang terdeteksi kosong dan setidaknya satu perangkat menyala.</p>
+      <p id="overview-dummy-note" class="people" hidden></p>
+    </section>
+    <section class="card">
+      <h2>Tren energi</h2>
+      <p id="trend-status" class="people" role="status" aria-live="polite">Memuat grafik…</p>
+      <div id="usage-trend"></div>
+    </section>
+    <section class="card">
+      <h2>Peringkat ruang</h2>
+      <p id="rooms-status" class="people" role="status" aria-live="polite">Memuat ruang…</p>
+      <div id="usage-room-table" class="usage-overview-table-wrap"></div>
+    </section>
+    <section class="card">
+      <h2>Jam sibuk rata-rata per ruang</h2>
+      <p id="hour-status" class="people" role="status" aria-live="polite">Memuat profil jam…</p>
+      <div id="usage-hour-heatmap"></div>
+    </section>
+    <section class="card usage-section">
+      <div class="row"><h2 style="margin:0">Pola penggunaan harian</h2></div>
+      <div class="metric-controls" role="group" aria-label="Metrik kalender penggunaan" data-calendar-controls="summary">
+        <button type="button" data-metric="occupancy" aria-pressed="true">Jam terisi</button>
+        <button type="button" data-metric="energy" aria-pressed="false">Energi</button>
+        <button type="button" data-metric="scheduled" aria-pressed="false">Jam terjadwal</button>
+      </div>
+      <div id="summary-usage-heatmap" class="usage-calendar"><p class="people">Memuat pola penggunaan…</p></div>
+      <p id="summary-usage-note" class="people" hidden></p>
+      <div id="summary-usage-detail" class="usage-detail" aria-live="polite"></div>
+    </section>
+  </div>
+
+</main>
+<footer><a class="muted" href="#/admin">Admin</a><span id="app-version" class="muted" role="status" aria-live="polite">Memuat versi…</span></footer>
+
+<script src="./vendor/hls.min.js" defer></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

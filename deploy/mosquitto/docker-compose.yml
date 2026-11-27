@@ -1,0 +1,13 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: smartx-mosquitto
+    user: "${UID:-1000}:${GID:-1000}"   # diisi setup.sh lewat .env
+    restart: unless-stopped
+    ports:
+      - "1883:1883"                      # semua antarmuka: ESP32 menyambung lewat hotspot
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./acl:/mosquitto/config/acl:ro
+      - ./passwd:/mosquitto/config/passwd:ro
+      - ./data:/mosquitto/data

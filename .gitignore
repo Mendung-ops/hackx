@@ -1,0 +1,44 @@
+# --- Rahasia dan konfigurasi lokal ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Database lokal (dibuat ulang lewat `python -m app.db.seed`) ---
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+# cadangan otomatis dari app.db.migrate dan cadangan manual
+hackx.db.bak*
+*.db.bak*
+
+# --- Node / frontend ---
+node_modules/
+
+# --- Log, editor, sistem operasi ---
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Broker MQTT: sandi dan data (dibuat oleh deploy/mosquitto/setup.sh) ---
+deploy/mosquitto/.env
+deploy/mosquitto/passwd
+deploy/mosquitto/credentials.txt
+deploy/mosquitto/data/

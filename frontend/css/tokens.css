@@ -1,0 +1,66 @@
+/* Academic Clean design tokens */
+:root {
+  color-scheme: light;
+
+  --bg: #F2F5F8;
+  --surface: #FFFFFF;
+  --surface-2: #F1F4F8;
+  --text: #1B2430;
+  --text-secondary: #4A5565;
+  --muted: #667085;
+
+  --line: #D3DCE5;
+  --line-strong: #B8C4D0;
+  --control-boundary: #7F8999;
+  --accent: #1769AA;
+  --accent-hover: #11588F;
+  --accent-active: #0D4A78;
+  --accent-strong: var(--accent-hover);
+  --accent-tint: #E8F1F8;
+  --on-accent: #FFFFFF;
+  --focus: #1769AA;
+
+  --ok: #1E7B4B;
+  --ok-bg: #E6F4EC;
+  --ok-line: #A9D8BC;
+  --warn: #8A5A00;
+  --warn-icon: #B87500;
+  --warn-bg: #FFF4DB;
+  --warn-line: #F0CE84;
+  --bad: #B42318;
+  --bad-bg: #FDECEA;
+  --bad-line: #F2B8B2;
+  --off: #667085;
+
+  --series-primary: #1769AA;
+  --series-secondary: #0E9F8E;
+  --series-muted: #8A94A6;
+  --series-warning: #D97706;
+
+  --heat-0: #F1F4F8;
+  --heat-1: #E8F1F8;
+  --heat-2: #BBD2E6;
+  --heat-3: #7EAAD0;
+  --heat-4: #1769AA;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius-sm: 6px;
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --control-height: 40px;
+  --touch-height: 44px;
+
+  --shadow: 0 1px 3px rgba(16, 24, 40, .08);
+  --shadow-hover: 0 8px 20px rgba(16, 24, 40, .11);
+  --motion-fast: 140ms;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }

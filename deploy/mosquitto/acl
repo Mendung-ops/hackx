@@ -1,0 +1,23 @@
+# ACL per akun. Prefix topik: smartx (lihat docs/mqtt-contract.md)
+# Tiap klien boleh menulis status/Last Will miliknya sendiri.
+pattern write smartx/status/%u
+
+user vision
+topic write smartx/vision/#
+
+user panel
+topic write smartx/panel/#
+topic read smartx/cmd/#
+
+user acunit
+topic write smartx/acunit/#
+topic read smartx/cmd/#
+
+# Akun keempat: rule engine (di luar tiga akun lapangan)
+user engine
+topic read smartx/#
+topic write smartx/cmd/#
+
+# Akun kelima: monitor untuk P4 (hanya baca, untuk mosquitto_sub saat tes bersama)
+user monitor
+topic read smartx/#
