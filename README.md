@@ -146,23 +146,3 @@ docs/                  # dokumentasi
 archive/               # salinan lama index.html frontend (riwayat, tidak dipakai aplikasi)
 ```
 
-## Dokumentasi
-
-| Dokumen | Isi |
-|---|---|
-| [docs/HOW_TO_RUN.md](docs/HOW_TO_RUN.md) | Panduan menjalankan lengkap, layanan eksternal, dan pemecahan masalah |
-| [docs/architecture.md](docs/architecture.md) | Lapisan, alur data, aturan kontrol, model data, titik penyambungan |
-| [docs/api-spec.md](docs/api-spec.md) | Semua endpoint dengan contoh request dan respons |
-| [docs/mqtt-contract.md](docs/mqtt-contract.md) | Kontrak topik dan payload MQTT, akun broker, perilaku kunci fisik |
-| [docs/demo-script.md](docs/demo-script.md) | Langkah demo 5 menit dengan `curl` |
-| [docs/changelog.md](docs/changelog.md) | Riwayat perubahan dan alasan tiap keputusan |
-| [docs/hardware-validation-template.md](docs/hardware-validation-template.md) | Templat pencatatan uji dengan perangkat asli |
-| [docs/handoff.md](docs/handoff.md) | Catatan serah terima sesi (21 Okt 2026, historis) |
-
-Setiap perubahan alur, kontrak API, atau skema data dicatat di `docs/changelog.md` supaya perkembangan proyek bisa ditelusuri.
-
-## Status
-
-Sudah ada: model dan seed, lapisan kontrol, API energi dan ringkasan penggunaan, halaman dashboard keseluruhan, Admin ruang/perangkat/kamera/jadwal, login HTTP Basic CCTV sementara di mode dev, jadwal mingguan, heatmap harian dan per jam, jembatan MQTT, dan prioritas fisik.
-Belum: uji dengan perangkat dan kamera asli; pelacak ack belum dipasang.
-Keputusan terbuka: aturan menyalakan otomatis, skema DB tim, validasi faktor emisi ke ESDM terbaru.
